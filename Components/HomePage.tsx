@@ -1,8 +1,8 @@
-import Features from '@/shared/Features.tsx'
-import Footer from '@/shared/Footer.tsx'
-import HeroSection from '@/shared/HeroSection.tsx'
-import HowItWorks from '@/shared/HowItWorks.tsx'
-import Navbar from '@/shared/Navbar.tsx'
+import Features from '@/shared/Features'
+import Footer from '@/shared/Footer'
+import HeroSection from '@/shared/HeroSection'
+import HowItWorks from '@/shared/HowItWorks'
+import Navbar from '@/shared/Navbar'
 
 const HomePage = () => {
     return (
