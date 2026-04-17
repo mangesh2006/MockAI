@@ -6,7 +6,7 @@ import Navbar from '@/shared/Navbar'
 
 const HomePage = () => {
     return (
-        <main className='w-screen h-full scroll-smooth text-black bg-white flex flex-col'>
+        <main className='w-screen h-screen scroll-smooth text-black bg-white flex flex-col overflow-x-hidden'>
             <Navbar />
 
             <HeroSection />

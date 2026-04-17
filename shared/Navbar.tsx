@@ -1,5 +1,7 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/Components/ui/sheet";
 import { LuMenu } from "react-icons/lu";
+import Signup from "./Auth/Signup";
+import Login from "./Auth/Login";
 
 const Navbar = () => {
   return (
@@ -30,12 +32,8 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center justify-center gap-7 h-full">
-          <button className="cursor-pointer border border-blue-500 p-2 font-semibold tracking-wider transition duration-300 hover:bg-blue-500 hover:text-white rounded-lg h-full">
-            Login
-          </button>
-          <button className="cursor-pointer bg-blue-500 p-2 h-full font-semibold text-white tracking-wider transition duration-400 hover:bg-blue-600 rounded-lg">
-            Signup
-          </button>
+          <Login />
+          <Signup />
         </div>
       </nav>
 
