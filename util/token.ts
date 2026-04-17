@@ -1,4 +1,4 @@
-import { redis } from "./redis.ts";
+import { redis } from "./redis";
 import jwt from "jsonwebtoken";
 
 export async function createVerificationToken(email: string) {

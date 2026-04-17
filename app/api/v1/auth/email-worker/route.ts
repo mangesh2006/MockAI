@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { transporter } from "@/util/email.ts";
+import { transporter } from "@/util/email";
 
 export async function POST(req: NextRequest) {
   const { email, link } = await req.json();
