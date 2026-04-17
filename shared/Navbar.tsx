@@ -1,7 +1,7 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { LuMenu } from "react-icons/lu";
-import Signup from "./Auth/Signup";
-import Login from "./Auth/Login";
+import Signup from "./Auth/Signup.tsx";
+import Login from "./Auth/Login.tsx";
 
 const Navbar = () => {
   return (
