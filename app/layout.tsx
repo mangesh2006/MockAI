@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,8 +32,9 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", "scroll-smooth", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
-      <body className="min-h-full flex flex-col scroll-smooth no-scrollbar">{children}</body>
-      <Toaster position="top-center"/>
+      <body className="min-h-full flex flex-col scroll-smooth no-scrollbar">{children}
+        <Toaster position="top-center" />
+      </body>
     </html>
   );
 }
