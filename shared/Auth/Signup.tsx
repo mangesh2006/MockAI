@@ -2,10 +2,10 @@
 
 import * as z from "zod"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/app/components/ui/dialog'
-import { useState } from 'react'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
+import toast from "react-hot-toast"
 
 export const User = z.object({
   name: z.string(),
@@ -37,7 +37,9 @@ const Signup = () => {
       const result = await api.json()
 
       if (api.ok) {
-
+        toast.success(result.message)
+      } else {
+        toast.error(result.error)
       }
     } catch (error) {
       console.log(error)
