@@ -7,7 +7,10 @@ export async function sendEmailJob(email: string, link: string) {
         Authorization: `Bearer ${process.env.QSTASH_TOKEN}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, link }),
+      body: JSON.stringify({
+        email: email,
+        link: link,
+      }),
     },
   );
 }
