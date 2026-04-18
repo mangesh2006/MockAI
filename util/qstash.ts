@@ -1,6 +1,6 @@
 export async function sendEmailJob(email: string, link: string) {
   await fetch(
-    `${process.env.QSTASH_URL}/http://localhost:3000/api/v1/auth/email-worker`,
+    `${process.env.QSTASH_URL}/${process.env.NEXT_PUBLIC_URL}/api/v1/auth/email-worker`,
     {
       method: "POST",
       headers: {

@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     const token = await createVerificationToken(email);
 
-    const link = `http://localhost:3000/api/v1/auth/verify?token=${token}`;
+    const link = `${process.env.NEXT_PUBLIC_URL}/api/v1/auth/verify?token=${token}`;
 
     await sendEmailJob(email, link);
 
