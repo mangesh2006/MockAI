@@ -1,5 +1,5 @@
-"use client";
 export const dynamic = "force-dynamic";
+"use client";
 
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -12,7 +12,8 @@ export default function VerifyPage() {
         const token = params.get("token");
 
         if (!token) {
-            return;
+            <div>Invalid link</div>
+            return
         }
 
         fetch(`/api/v1/auth/verify?token=${token}`)
