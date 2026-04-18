@@ -1,12 +1,10 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 
-export default function VerifyPage() {
+function VerifyContent() {
     const params = useSearchParams();
     const token = params.get("token");
 
@@ -40,5 +38,13 @@ export default function VerifyPage() {
                 to go back and login
             </p>
         </div>
+    );
+}
+
+export default function VerifyPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <VerifyContent />
+        </Suspense>
     );
 }
