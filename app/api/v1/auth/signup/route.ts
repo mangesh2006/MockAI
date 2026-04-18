@@ -1,6 +1,9 @@
 import { sendEmailJob } from "@/util/qstash";
 import { createVerificationToken } from "@/util/token";
 import { NextRequest, NextResponse } from "next/server";
+import { redis } from "@/util/redis";
+import bcrypt from "bcrypt";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,9 +13,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Data not found" }, { status: 400 });
     }
 
+    const existing = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existing) {
+      return NextResponse.json(
+        { error: "User already exists" },
+        { status: 400 },
+      );
+    }
+
     const token = await createVerificationToken(email);
 
     const link = `https://mock-ai-sandy-seven.vercel.app/verify?token=${token}`;
+
+    const hashedpass = await bcrypt.hash(password, 10);
+
+    redis.set(
+      `User:${token}`,
+      JSON.stringify({ name, email, password: hashedpass }),
+      "EX",
+      600,
+    );
 
     await sendEmailJob(email, link);
 
