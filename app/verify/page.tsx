@@ -9,14 +9,13 @@ import toast from "react-hot-toast";
 export default function VerifyPage() {
     const params = useSearchParams();
 
+    const token = params.get("token");
+
+    if (!token) {
+        return <div>Invalid link</div>
+    }
+    
     useEffect(() => {
-        const token = params.get("token");
-
-        if (!token) {
-            <div>Invalid link</div>
-            return
-        }
-
         fetch(`/api/v1/auth/verify?token=${token}`)
             .then(async (res) => {
                 const data = await res.json();
