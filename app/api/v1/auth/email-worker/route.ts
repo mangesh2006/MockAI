@@ -1,16 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
+import { transporter } from "@/util/email";
 
 export async function POST(req: NextRequest) {
-  const raw = await req.text();
-
-  console.log("RAW BODY:", raw);
-
   try {
-    const parsed = JSON.parse(raw);
-    console.log("PARSED:", parsed);
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("PARSE ERROR:", err);
-    return NextResponse.json({ error: "Invalid JSON", raw }, { status: 400 });
+    const { email, link } = await req.json();
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Verify your account",
+      html: `
+        <h2>Verify Your Account</h2>
+        <p>Click the link below to verify:</p>
+        <a href="${link}">Verify Account</a>
+      `,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("MAIL ERROR:", error);
+
+    return NextResponse.json(
+      { error: "Email failed to send" },
+      { status: 500 },
+    );
   }
 }
