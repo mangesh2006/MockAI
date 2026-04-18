@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/util/redis";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/util/prisma";
 
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("token");

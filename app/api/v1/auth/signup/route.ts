@@ -3,7 +3,7 @@ import { createVerificationToken } from "@/util/token";
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/util/redis";
 import bcrypt from "bcrypt";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/util/prisma";
 
 export async function POST(req: NextRequest) {
   try {
