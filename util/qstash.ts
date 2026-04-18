@@ -7,7 +7,7 @@ export async function sendEmailJob(email: string, link: string) {
   });
 
   await client.publish({
-    url: `${process.env.NEXT_PUBLIC_URL}`,
+    url: "https://mock-ai-sandy-seven.vercel.app/api/v1/auth/email-worker",
     body: JSON.stringify({
       email,
       link,
