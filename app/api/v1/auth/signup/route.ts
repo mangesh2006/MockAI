@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     const token = await createVerificationToken(email);
 
-    const link = `${process.env.NEXT_PUBLIC_URL}/api/v1/auth/verify?token=${token}`;
+    const link = `https://mock-ai-sandy-seven.vercel.app/verify?token=${token}`;
 
     await sendEmailJob(email, link);
 
