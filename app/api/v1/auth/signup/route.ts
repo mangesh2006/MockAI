@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
     const hashedpass = await bcrypt.hash(password, 10);
 
-    redis.set(
+    await redis.set(
       `User:${token}`,
       JSON.stringify({ name, email, password: hashedpass }),
       "EX",
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
     await sendEmailJob(email, link);
 
     return NextResponse.json(
-      { message: "Verification link send" },
+      { message: "Verification link sent" },
       { status: 200 },
     );
   } catch (error) {

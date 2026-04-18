@@ -2,7 +2,6 @@ import { Client } from "@upstash/qstash";
 
 export async function sendEmailJob(email: string, link: string) {
   const client = new Client({
-    baseUrl: `${process.env.QSTASH_URL}`,
     token: `${process.env.QSTASH_TOKEN}`,
   });
 
