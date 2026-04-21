@@ -24,11 +24,11 @@ export async function POST(req: NextRequest) {
 
     const newRefreshToken = jwt.sign(
       {
-        userId: decoded.id,
+        id: decoded.id,
         email: decoded.email,
       },
       process.env.JWT_SECRET!,
-      { expiresIn: "15m" },
+      { expiresIn: "7d" },
     );
 
     const response = NextResponse.json({
