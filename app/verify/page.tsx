@@ -3,6 +3,13 @@
 import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "MockAI - Practice Real Interviews with AI",
+    description: "This is a home page of MockAI",
+};
+
 
 function VerifyContent() {
     const params = useSearchParams();

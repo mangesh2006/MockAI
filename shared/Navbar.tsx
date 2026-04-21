@@ -1,9 +1,30 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/app/components/ui/sheet";
+"use client"
+
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/app/components/ui/sheet";
 import { LuMenu } from "react-icons/lu";
 import Signup from "./Auth/Signup";
 import Login from "./Auth/Login";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const [username, setUsername] = useState("")
+  const route = useRouter()
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const api = await fetch("/api/v1/auth/me", {
+        credentials: "include"
+      })
+      const result = await api.json()
+
+      if (api.ok) {
+        setUsername(result.username)
+      }
+    }
+
+    fetchUser()
+  }, [])
   return (
     <>
       <nav className="backdrop-blur-lg top-0 z-10 sticky hidden md:flex justify-between items-center shadow-sm px-3 py-3 border-b border-gray-300 bg-transparent">
@@ -24,17 +45,17 @@ const Navbar = () => {
             </li>
           </a>
 
-          <li>
-            <button className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition font-medium cursor-pointer shadow-sm hover:shadow-md">
-              Start Interview
-            </button>
-          </li>
+          <button className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition font-medium cursor-pointer shadow-sm hover:shadow-md" onClick={() => route.push("/dashboard")}>
+            Start Interview
+          </button>
         </ul>
 
-        <div className="flex items-center justify-center gap-7 h-full">
+        {username ? (<div className="p-2 rounded-full flex items-center justify-center w-10 h-10 font-bold text-lg bg-blue-100/80">
+          {username.charAt(0).toUpperCase()}
+        </div>) : <div className="flex items-center justify-center gap-7 h-full">
           <Login />
           <Signup />
-        </div>
+        </div>}
       </nav>
 
       <nav className="md:hidden px-3 py-3 bg-transparent backdrop-blur-lg top-0 z-10 sticky flex items-center justify-between border-b border-gray-300">

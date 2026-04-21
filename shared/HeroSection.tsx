@@ -1,9 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const HeroSection = () => {
+    const router = useRouter()
     const aiMessage =
         "Tell me about a React project where you improved performance."
 
@@ -75,7 +77,7 @@ const HeroSection = () => {
                     </p>
 
                     <div className='flex items-center gap-3 mt-6'>
-                        <button className='cursor-pointer px-4 py-2 rounded-xl transition-all duration-200 text-white bg-blue-500 font-semibold text-xl hover:bg-blue-600'>Start Interview</button>
+                        <button className='cursor-pointer px-4 py-2 rounded-xl transition-all duration-200 text-white bg-blue-500 font-semibold text-xl hover:bg-blue-600' onClick={() => router.push("/dashboard")}>Start Interview</button>
                         <a href="#howitworks">
                             <button className='cursor-pointer rounded-xl transition-all duration-200 font-semibold text-xl border px-4 py-2 text-gray-700 hover:border-blue-500 hover:text-blue-500'>See How it works</button>
                         </a>
