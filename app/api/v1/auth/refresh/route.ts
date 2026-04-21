@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         id: decoded.id,
         email: decoded.email,
       },
-      process.env.JWT_SECRET!,
+      process.env.JWT_REFRESH_SECRET!,
       { expiresIn: "7d" },
     );
 
