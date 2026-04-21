@@ -17,12 +17,19 @@ export default function AuthProvider({
             });
         };
 
-        const interval = setInterval(
-            refresh,
-            13 * 60 * 1000
-        );
+        refresh(); 
 
-        return () => clearInterval(interval);
+        const interval = setInterval(refresh, 13 * 60 * 1000);
+
+        document.addEventListener("visibilitychange", refresh);
+
+        return () => {
+            clearInterval(interval);
+            document.removeEventListener(
+                "visibilitychange",
+                refresh
+            );
+        };
     }, []);
 
     return <>{children}</>;

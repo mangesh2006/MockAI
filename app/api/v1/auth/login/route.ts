@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
 
     const refresh_token = jwt.sign(
       { id: user.id, email },
-      process.env.JWT_SECRET!,
+      process.env.JWT_REFRESH_SECRET!,
       {
         expiresIn: "7d",
       },

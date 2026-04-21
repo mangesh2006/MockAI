@@ -9,7 +9,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No refresh token" }, { status: 401 });
     }
 
-    const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET!) as {
+    const decoded = jwt.verify(
+      refreshToken,
+      process.env.JWT_REFRESH_SECRET!,
+    ) as {
       id: string;
       email: string;
     };
