@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export async function POST(req: NextRequest) {
   try {
-    const refreshToken = req.cookies.get("refreshToken")?.value;
+    const refreshToken = req.cookies.get("refresh_token")?.value;
 
     if (!refreshToken) {
       return NextResponse.json({ error: "No refresh token" }, { status: 401 });
