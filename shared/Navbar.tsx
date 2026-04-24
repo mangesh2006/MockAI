@@ -6,20 +6,30 @@ import Signup from "./Auth/Signup";
 import Login from "./Auth/Login";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
+import Dropdown from "./Dashboard/Dropdown";
 
 const Navbar = () => {
   const [username, setUsername] = useState("")
+  const [Loading, setLoading] = useState(false)
   const route = useRouter()
 
   useEffect(() => {
     const fetchUser = async () => {
-      const api = await fetch("/api/v1/auth/me", {
-        credentials: "include"
-      })
-      const result = await api.json()
+      setLoading(true)
+      try {
+        const api = await fetch("/api/v1/auth/me", {
+          credentials: "include"
+        })
+        const result = await api.json()
 
-      if (api.ok) {
-        setUsername(result.username)
+        if (api.ok) {
+          setUsername(result.username)
+        }
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -50,12 +60,15 @@ const Navbar = () => {
           </button>
         </ul>
 
-        {username ? (<div className="p-2 rounded-full flex items-center justify-center w-10 h-10 font-bold text-lg bg-blue-100/80">
-          {username.charAt(0).toUpperCase()}
+        {Loading ? <Loader2 className="animate-spin" /> : <> {username ? (<div className="flex items-center">
+          <div className="p-2 rounded-full flex items-center justify-center w-10 h-10 font-bold text-lg bg-blue-100/80">
+            {username.charAt(0).toUpperCase()}
+          </div>
+          <Dropdown />
         </div>) : <div className="flex items-center justify-center gap-7 h-full">
           <Login />
           <Signup />
-        </div>}
+        </div>}</>}
       </nav>
 
       <nav className="md:hidden px-3 py-3 bg-transparent backdrop-blur-lg top-0 z-10 sticky flex items-center justify-between border-b border-gray-300">
