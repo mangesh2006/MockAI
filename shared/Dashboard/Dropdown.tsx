@@ -16,6 +16,7 @@ const Dropdown = () => {
             if (api.ok) {
                 toast.success(result.message)
                 router.push("/")
+                router.refresh()
             } else {
                 toast.error(result.error)
             }
