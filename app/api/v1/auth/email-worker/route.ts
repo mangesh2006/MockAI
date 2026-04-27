@@ -8,9 +8,9 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
-      subject: "Verify your account",
+      subject: "Verify your email",
       html: `
-        <h2>Verify Your Account</h2>
+        <h2>Verify Your Email</h2>
         <p>Click the link below to verify:</p>
         <a href="${link}">Verify Account</a>
       `,

@@ -38,9 +38,7 @@ const Dashboard = () => {
             <li>
               Reports
             </li>
-            <li>
-              Profile
-            </li>
+            <button className="p-2 rounded-lg bg-blue-500 text-white transition duration-300 hover:bg-blue-600 cursor-pointer">Start Interview</button>
           </ul>
         </div>
 
