@@ -14,7 +14,7 @@ export default function SettingsLayout({
 }) {
     return (
         <main className="h-screen w-screen bg-accent flex items-center justify-center">
-            <div className="flex flex-col bg-white rounded-xl shadow h-1/2 w-1/2 overflow-hidden">
+            <div className="flex flex-col bg-white rounded-xl shadow h-[70%] w-1/2 overflow-hidden">
 
                 <h2 className="w-full text-lg p-2 flex items-center gap-1">
                     <Settings2 size={20} />

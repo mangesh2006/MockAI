@@ -36,5 +36,7 @@ export async function GET(req: NextRequest) {
 
   await redis.del(`verify:${token}`);
 
-  return NextResponse.json({ message: "Verified ✅" });
+  await redis.del(`User:${token}`);
+
+  return NextResponse.json({ message: "Verified" });
 }

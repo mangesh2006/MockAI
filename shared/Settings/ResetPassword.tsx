@@ -10,8 +10,37 @@ const ResetPassword = () => {
     const [Newpassword, setNewPassword] = useState("")
     const [ConfirmPassword, setConfirmPassword] = useState("")
     const [Loading, setLoading] = useState(false)
+    const lowercase = /[a-z]/
+    const uppercase = /[A-Z]/
+    const specialchar = /[@#$%^&*()!]/
+    const number = /[0-9]/
 
     const handleResetPassword = async () => {
+        if(!lowercase.test(Newpassword)) {
+            toast.error("Password must contain 1 lowercase")
+            return
+        }
+
+        if(!uppercase.test(Newpassword)) {
+            toast.error("Password must contain 1 uppercase")
+            return
+        }
+
+        if(!specialchar.test(Newpassword)) {
+            toast.error("Password must contain 1 special character")
+            return
+        }
+
+        if(!number.test(Newpassword)) {
+            toast.error("Password must contain 1 number")
+            return
+        }
+
+        if(Newpassword.length < 8) {
+            toast.error("Password length must be 8 characters")
+            return
+        }
+
         if (Newpassword !== ConfirmPassword) {
             toast.error("Passwords do not match")
             return;
@@ -51,6 +80,14 @@ const ResetPassword = () => {
             <div className="flex flex-col gap-2">
                 <label htmlFor="password" className="font-semibold">Enter your new password</label>
                 <input type="password" name="password" id="password" className="border border-gray-300 rounded-lg p-2 w-2/3" value={Newpassword} onChange={(e) => setNewPassword(e.target.value)} />
+            </div>
+            <div className="flex flex-col gap-2 p-2 bg-blue-400/10 ring-2 ring-blue-500 w-2/3 rounded-lg">
+                <span className="text-blue-600 font-bold">Note: </span>
+                <span>Password must be 8 characters long</span>
+                <span>Password must contain atleast 1 number</span>
+                <span>Password must contain atleast 1 special character</span>
+                <span>Password must contain atleast 1 lowercase</span>
+                <span>Password must contain atleast 1 uppercase</span>
             </div>
             <div className="flex flex-col gap-2">
                 <label htmlFor="password" className="font-semibold">Confirm new password</label>
