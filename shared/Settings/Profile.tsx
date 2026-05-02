@@ -7,14 +7,19 @@ import toast from "react-hot-toast"
 
 interface IUser {
   username: string,
-  email: string
+  email: string,
+  createdAt: Date
 }
 
 const Profile = () => {
   const [User, setUser] = useState<IUser>({
     username: "",
-    email: ""
+    email: "",
+    createdAt: new Date()
   })
+
+  const formattedDate = new Date(User.createdAt).toLocaleDateString();
+  const formattedTime = new Date(User.createdAt).toLocaleTimeString();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -50,6 +55,11 @@ const Profile = () => {
         <div className="flex items-center justify-between p-2 w-full">
           <span className="font-semibold text-lg">Email</span>
           {User.email ? (<span className="text-lg">{User.email}</span>) : <Loader2 className="animate-spin" />}
+        </div>
+
+        <div className="flex items-center justify-between p-2 w-full">
+          <span className="font-semibold text-lg">Created At</span>
+          {User.createdAt ? (<span className="text-lg" suppressHydrationWarning>{formattedDate}, {formattedTime}</span>) : <Loader2 className="animate-spin" />}
         </div>
       </div>
     </div>

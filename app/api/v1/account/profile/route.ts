@@ -28,6 +28,7 @@ export async function GET(req: NextRequest) {
     const Fetcheduser = {
       username: user.name,
       email: user.email,
+      createdAt: user.createdAt,
     };
 
     return NextResponse.json(

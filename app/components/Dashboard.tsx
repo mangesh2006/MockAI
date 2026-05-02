@@ -2,11 +2,17 @@
 
 import { apiFetch } from "@/lib/apiFetch"
 import Dropdown from "@/shared/Dashboard/Dropdown"
+import ScoreChart from "@/shared/Dashboard/ScoreChart"
+import StartInterviewDialog from "@/shared/Dashboard/StartInterviewDialog"
+import Stats from "@/shared/Dashboard/Stats"
+import Welcome from "@/shared/Dashboard/Welcome"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 
 const Dashboard = () => {
   const [username, setUsername] = useState("")
+  const [Open, setOpen] = useState(false)
+
   useEffect(() => {
     const fetchUsername = async () => {
       try {
@@ -27,7 +33,7 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center bg-accent h-screen w-screen overflow-x-hidden">
       <nav className="w-full p-3 flex items-center justify-between bg-blue-300/10">
         <div className="flex items-center gap-10">
           <h2 className="font-bold text-3xl">Mock<span className="text-blue-500">AI</span></h2>
@@ -38,7 +44,6 @@ const Dashboard = () => {
             <li>
               Reports
             </li>
-            <button className="p-2 rounded-lg bg-blue-500 text-white transition duration-300 hover:bg-blue-600 cursor-pointer">Start Interview</button>
           </ul>
         </div>
 
@@ -46,10 +51,17 @@ const Dashboard = () => {
           <div className="p-2 rounded-full h-12 w-12 bg-blue-500/20 text-xl flex items-center justify-center font-bold">
             {username.charAt(0).toUpperCase()}
           </div>
-
           <Dropdown />
         </div>
       </nav>
+
+      <Welcome username={username} OpenDialog={() => setOpen(true)} />
+
+      <Stats OpenDialog={() => setOpen(true)} />
+
+      <ScoreChart />
+
+      <StartInterviewDialog Open={Open} setOpen={setOpen} />
     </main>
   )
 }
